@@ -2,6 +2,8 @@ package smb2
 
 import (
 	"encoding/asn1"
+	"os"
+	"strconv"
 
 	"github.com/zdrealityhub/go-smb2/internal/spnego"
 )
@@ -64,7 +66,12 @@ func (c *spnegoClient) acceptSecContext(negTokenRespBytes []byte) (negTokenRespB
 
 	mechListMIC := c.selectedMech.sum(ms)
 
-	negTokenRespBytes1, err = spnego.EncodeNegTokenResp(1, nil, responseToken, mechListMIC)
+	envSMBNegTokenState, err := strconv.Atoi(os.Getenv("SMB_NEG_TOKEN_INCOMPLETE"))
+	if err != nil {
+		envSMBNegTokenState = 1
+	}
+
+	negTokenRespBytes1, err = spnego.EncodeNegTokenResp(asn1.Enumerated(envSMBNegTokenState), nil, responseToken, mechListMIC)
 	if err != nil {
 		return nil, err
 	}
