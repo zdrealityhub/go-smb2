@@ -587,7 +587,7 @@ func TestListSharenames(t *testing.T) {
 		t.Fatal(err)
 	}
 	sort.Strings(names)
-	for _, expected := range []string{"IPC$", "tmp", "tmp2"} {
+	for _, expected := range []string{"IPC$", cfg.TreeConn.Share1, cfg.TreeConn.Share2} {
 		found := false
 		for _, name := range names {
 			if name == expected {
