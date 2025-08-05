@@ -1,0 +1,25 @@
+{
+  "max_credit_balance": 1000,
+  "transport": {
+    "type": "tcp",
+    "host": "<host-ip>",
+    "port": 445
+  },
+  "conn": {
+    "signing": false,
+    "guid": "your-client-guid",
+    "dialect": 0
+  },
+  "session": {
+    "type": "ntlm",
+    "user": "<username>",
+    "passwd": "<password>",
+    "domain": "WORKGROUP",
+    "workstation": "WORKSTATION",
+    "targetSPN": ""
+  },
+  "tree_conn": {
+    "share1": "<share-name-1>",
+    "share2": "<share-name-2>"
+  }
+}
