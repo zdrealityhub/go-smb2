@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"os"
 	"reflect"
@@ -356,7 +355,7 @@ func TestSymlink(t *testing.T) {
 
 		f, err = fs.Open(testDir + `\linkToTestFile`)
 		if err == nil { // if it supports follow-symlink
-			bs, err := ioutil.ReadAll(f)
+			bs, err := io.ReadAll(f)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -485,7 +484,7 @@ func TestRename(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer f.Close()
-	bs, err := ioutil.ReadAll(f)
+	bs, err := io.ReadAll(f)
 	if err != nil {
 		t.Fatal(err)
 	}
